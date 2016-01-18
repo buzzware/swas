@@ -78,3 +78,16 @@ start file: `$ vi start`
 	$ ./bin/start
 	$ ./bin/stop
 	$ ./bin/restart
+
+### Nginx commands that you can also use are:
+
+If you want to test your config is Ok or not, then you can do:
+
+	$ cd /path/to/your/project/openresty/nginx
+	$ sbin/nginx -p `pwd` -c config/nginx.conf -t
+
+Sometimes, if `pid` is not set, we need to forcefully stop/kill nginx:
+
+	$ ps -ef | grep nginx
+	# => 23439
+	$ kill 23439
