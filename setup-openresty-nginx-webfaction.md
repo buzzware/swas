@@ -84,7 +84,7 @@ For more information [http://openresty.org/#Installation](http://openresty.org/#
 
 > NOTE: it also installed nginx inside 
 > `~/webapps/openresty_nginx_app/openresty/nginx` directory, for more information in
-> setting up nginx follow [https://github.com/buzzware/swas/blob/master/SETUP-NGINX.md](https://github.com/buzzware/swas/blob/master/SETUP-NGINX.md)
+> setting up nginx follow [SETUP-NGINX](SETUP-NGINX.md)
 
 ### 3. Install `nginx-jwt`
 

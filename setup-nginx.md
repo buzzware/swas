@@ -6,7 +6,7 @@ Because we are using `openresty` for setting up `nginx-jwt`, so we don't have
 to install `nginx` seperately. `openresty` will automatically install nginx
 as well as other required libraries for us. 
 
-Please follow []() for installing `openresty` with `nginx` in our `WebFaction`
+Please follow [setup-openresty-nginx-webfaction](setup-openresty-nginx-webfaction.md) for installing `openresty` with `nginx` in our `WebFaction`
 server.
 
 ### start, stop and restart script for `nginx`
