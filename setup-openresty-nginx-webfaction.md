@@ -3,7 +3,7 @@
 **Configuration Directories in WebFaction**
 
 In WebFaction, all of our application leaves under `webapps` directory which is
-inside $HOME directory i.e /home/<user>/webapps. Let's name our app
+inside $HOME directory i.e /home/user/webapps. Let's name our app
 `openresty_nginx_app`. Below diagram will make clear of our directory structure.
 
 	|- webapps/
@@ -51,7 +51,7 @@ make sure you enable and disable required openresty modules yourself.
     $ tar xvf ngx_openresty-1.9.7.1.tar.gz
     $ cd ngx_openresty-1.9.7.1/
     $ ./configure \
-      --prefix=/home/<myuser>/webapps/openresty_nginx_app/openresty \
+      --prefix=/home/user/webapps/openresty_nginx_app/openresty \
       --with-luajit \
       --with-ipv6 \
       --with-http_postgres_module \
@@ -160,7 +160,7 @@ invalid JWT token.
 
 Example:
 
-	$ curl -i http://<url>/secure
+	$ curl -i http://your-host-url/secure
 
 	#RESPONSE:
 	
