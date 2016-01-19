@@ -31,6 +31,7 @@ $ cd /your/project/directory
 $ mkdir bin
 $ cd bin
 $ touch start stop restart
+$ chmod +x start stop restart
 ```
 
 2) copy and past below line of start script, I am using vi editor to edit 
