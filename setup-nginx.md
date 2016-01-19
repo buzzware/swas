@@ -79,9 +79,9 @@ start file: `$ vi start`
 	$ ./bin/stop
 	$ ./bin/restart
 
-### Nginx commands that you can also use are:
+### Test your nginx configuration:
 
-If you want to test your config is Ok or not, then you can do:
+If you want to test your config file:
 
 	$ cd /path/to/your/project/openresty/nginx
 	$ sbin/nginx -p `pwd` -c config/nginx.conf -t
