@@ -2,8 +2,8 @@
 
 - [Installation](#installation)
 - [Nginx Start, Stop and Restart bash script](#start-stop-and-restart-script-for-nginx)
-- [Testing scripts](#you-should-be-able-to-run-those-scripts)
-- [Testing nginx.conf](#test-your-nginx-configuration)
+- [Execute scripts](#you-should-be-able-to-run-those-scripts)
+- [Test nginx.conf](#test-your-nginx-configuration)
 
 ## Setup Nginx for nginx-jwt
 
