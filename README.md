@@ -1,6 +1,6 @@
-## Table of contents:
+## Table of content
 
-- [Introduction](#swas)
+- [Introduction](#swas-static-web-application-server)
 - [Setup OpenResty, Nginx, nginx-jwt In WebFaction](setup-openresty-nginx-webfaction.md)
 - [Nginx start, stop and restart scripts](setup-nginx.md)
 - [References](#references)
