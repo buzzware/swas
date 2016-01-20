@@ -1,3 +1,10 @@
+## Table of content
+
+- [Installation](#installation)
+- [Nginx Start, Stop and Restart bash script](#start-stop-and-restart-script-for-nginx)
+- [Testing scripts](#you-should-be-able-to-run-those-scripts)
+- [Testing nginx.conf](#test-your-nginx-configuration)
+
 ## Setup Nginx for nginx-jwt
 
 ### Installation
@@ -6,7 +13,7 @@ Because we are using `openresty` for setting up `nginx-jwt`, so we don't have
 to install `nginx` seperately. `openresty` will automatically install nginx
 as well as other required libraries for us. 
 
-Please follow [setup-openresty-nginx-webfaction](setup-openresty-nginx-webfaction.md) 
+Please follow [setup-openresty-nginx-webfaction](setup-openresty-nginx-webfaction.md)
 for installing `openresty` with `nginx` in our `WebFaction` server.
 
 ### start, stop and restart script for `nginx`
