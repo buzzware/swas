@@ -1,3 +1,14 @@
+## Table of content
+
+1. [Introduction](#setup-openresty-nginx-jwt-in-webfaction)
+2. [Install Lua](#1-lua)
+3. [Install OpenResty](#2-install-openresty)
+4. [Install nginx-jwt](#3-install-nginx-jwt)
+5. [Configure nginx, nginx-jwt](#4-configuration)
+6. [References](#references)
+
+
+
 ## Setup `openresty`, `nginx-jwt` in WebFaction:
 
 **Configuration Directories in WebFaction**
