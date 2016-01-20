@@ -5,7 +5,7 @@
 - [Install OpenResty](#2-install-openresty)
 - [Install nginx-jwt](#3-install-nginx-jwt)
 - [Configure nginx, nginx-jwt](#4-configuration)
-- [Testing with curl command](#testing-with-curl-i-command)
+- [Testing with curl command](#testing-with-curl--i-command)
 - [References](#references)
 
 
