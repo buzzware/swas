@@ -5,6 +5,7 @@
 - [Install OpenResty](#2-install-openresty)
 - [Install nginx-jwt](#3-install-nginx-jwt)
 - [Configure nginx, nginx-jwt](#4-configuration)
+- [Testing with curl command](#testing-with-curl-i-command)
 - [References](#references)
 
 
@@ -169,7 +170,7 @@ Then we required `nginx-jwt.lua` file using `require`. And called `nginx-jwt`
 inbuilt `auth()` function. This function will helps us secure our API with 
 invalid JWT token.
 
-Example:
+### Testing with `curl -i` command
 
 	$ curl -i http://your-host-url/secure
 
