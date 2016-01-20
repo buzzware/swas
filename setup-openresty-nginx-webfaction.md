@@ -1,11 +1,11 @@
 ## Table of content
 
-[Introduction](#setup-openresty-nginx-jwt-in-webfaction)
-[Install Lua](#1-lua)
-[Install OpenResty](#2-install-openresty)
-[Install nginx-jwt](#3-install-nginx-jwt)
-[Configure nginx, nginx-jwt](#4-configuration)
-[References](#references)
+- [Introduction](#setup-openresty-nginx-jwt-in-webfaction)
+- [Install Lua](#1-lua)
+- [Install OpenResty](#2-install-openresty)
+- [Install nginx-jwt](#3-install-nginx-jwt)
+- [Configure nginx, nginx-jwt](#4-configuration)
+- [References](#references)
 
 
 
