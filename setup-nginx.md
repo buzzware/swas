@@ -1,6 +1,6 @@
 ## Table of content
 
-- [Home](https://github.com/buzzware/swas)
+- [Home](README.md)
 - [Installation](#installation)
 - [Nginx Start, Stop and Restart bash script](#start-stop-and-restart-script-for-nginx)
 - [Execute scripts](#you-should-be-able-to-run-those-scripts)
