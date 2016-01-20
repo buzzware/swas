@@ -1,5 +1,6 @@
 ## Table of content
 
+- [Home](README.md)
 - [Introduction](#setup-openresty-nginx-jwt-in-webfaction)
 - [Install Lua](#1-lua)
 - [Install OpenResty](#2-install-openresty)
