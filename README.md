@@ -5,7 +5,8 @@ This is a project to provided a server tailored for "static" websites and/or Sin
 
 It aims to add a few extra features over normal static hosting to create apps more like typical server-based webapps, without requiring custom backend development.
 
-1. supports JSON Web Tokens for authentication (http://jwt.io)
+1. supports JSON Web Tokens for authentication ([http://jwt.io](http://jwt.io),
+[watch this screencast](https://www.youtube.com/watch?v=oXxbB5kv9OA))
 2. ability to require roles in the JWT payload for particular pages and/or files
 3. ability to inject the decoded JWT payload into the app
 

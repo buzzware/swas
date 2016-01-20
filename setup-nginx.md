@@ -6,8 +6,8 @@ Because we are using `openresty` for setting up `nginx-jwt`, so we don't have
 to install `nginx` seperately. `openresty` will automatically install nginx
 as well as other required libraries for us. 
 
-Please follow [setup-openresty-nginx-webfaction](setup-openresty-nginx-webfaction.md) for installing `openresty` with `nginx` in our `WebFaction`
-server.
+Please follow [setup-openresty-nginx-webfaction](setup-openresty-nginx-webfaction.md) 
+for installing `openresty` with `nginx` in our `WebFaction` server.
 
 ### start, stop and restart script for `nginx`
 
@@ -71,7 +71,8 @@ start file: `$ vi start`
 1. Make sure you have installed `openresty`
 2. Install `openresty` inside openresty directory of your project directory
 3. Your `nginx` will get installed inside openresty > nginx directory
-4. You can change installation directories and other configuration options while installing `openresty`.
+4. You can change installation directories and other configuration options 
+while installing `openresty`.
 
 ### You should be able to run those scripts:
 
