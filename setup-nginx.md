@@ -38,8 +38,8 @@ openresty which will install nginx for us.
 $ cd /your/project/directory
 $ mkdir bin
 $ cd bin
-$ touch start stop restart
-$ chmod +x start stop restart
+$ touch start stop restart log
+$ chmod +x start stop restart log
 ```
 
 2) copy and past below line of start script, I am using vi editor to edit 
@@ -63,7 +63,7 @@ start file: `$ vi start`
   		kill $( cat $pid_file )
 	fi
 	sleep 3
-	rm -rf /home/buzzware1/webapps/openresty_nginx_app/tmp/*
+	rm -rf $HOME/webapps/openresty_nginx_app/tmp/*
 	
 > Don't forget to set `nginx.pid` path in your `nginx.conf` file.
 
@@ -73,6 +73,15 @@ start file: `$ vi start`
 	
 	/path/to/your/project/bin/stop
 	/path/to/your/project/bin/start
+
+
+5) While we are here, it is also useful to add `log` script, which simply display
+`tail -f error.log` from nginx: `$ vi log`
+		
+	#!/bin/bash
+
+	tail -f $HOME/webapps/openresty_nginx_app/openresty/nginx/logs/error.log
+
 
 **IMPORTANT NOTES:**
 
