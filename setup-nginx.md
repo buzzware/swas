@@ -63,7 +63,7 @@ start file: `$ vi start`
   		kill $( cat $pid_file )
 	fi
 	sleep 3
-	rm -rf $HOME/webapps/openresty_nginx_app/tmp/*
+	rm -rf /path/to/your/project/tmp/*
 	
 > Don't forget to set `nginx.pid` path in your `nginx.conf` file.
 
@@ -80,7 +80,7 @@ start file: `$ vi start`
 		
 	#!/bin/bash
 
-	tail -f $HOME/webapps/openresty_nginx_app/openresty/nginx/logs/error.log
+	tail -f /path/to/your/project/openresty/nginx/logs/error.log
 
 
 **IMPORTANT NOTES:**
