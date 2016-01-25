@@ -223,9 +223,20 @@ With Valid Token:
 	
 Should respond with content in `index.html` page.
 
-### Payload 
+### Payload format
 
-payload = {uid: '123', exp: 36000.seconds.from_now.to_i, iss: 'i.freewheeler.com', roles: ["admin.system"], aud: 'foo:user'}
+To ensure, above `/admin` resource do not throw `401` error, you need to make
+sure, you must have `iss: 'i.freewheeler.com'` and `roles: ["admin.system"]` 
+in your payload.
+
+  	# Example Payload
+  	{
+  		uid: '123', 
+  		exp: 36000.seconds.from_now.to_i, 
+  		iss: 'i.freewheeler.com', 
+  		roles: ["admin.system"], 
+  		aud: 'foo:user'
+  	}
 
 ## References
 
