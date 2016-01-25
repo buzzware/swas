@@ -129,61 +129,61 @@ for more information: [https://github.com/auth0/nginx-jwt](https://github.com/au
 `vi ~/webapps/openresty_nginx_app/openresty/nginx/conf/nginx.conf`
 
 	env JWT_SECRET=c2VjcmV0;
-  env JWT_SECRET_IS_BASE64_ENCODED=true;
+	env JWT_SECRET_IS_BASE64_ENCODED=true;
 
-  worker_processes 1;
+	worker_processes 1;
 
-  events {
-    worker_connections 1024;
-  }
-
-  http {
-    include       mime.types;
-    default_type  application/octet-stream;
-
-    sendfile      on;
-    sendfile_max_chunk 1m;
-
-    tcp_nopush on;
-    tcp_nodelay on;
-
-    keepalive_timeout 65;
-
-    lua_package_path "$HOME/webapps/openresty_nginx_app/openresty/lualib/?.lua;;";
-
-    server {
-      listen      8080;
-      server_name localhost;
-      root        $HOME/webapps/openresty_nginx_app/app;
-
-      location / {
-        try_files $uri /index.html;
-      }
-
-      location /secure {
-        access_by_lua '
-          local jwt = require("nginx-jwt")
-          jwt.auth()
-        ';
-
-        # try_files $uri /index.html;
-        proxy_pass http://app.webfactional.com/secure.html;
-      }
-
-      location /admin {
-        access_by_lua '
-          local jwt = require("nginx-jwt")
-          jwt.auth({
-            iss="i.freewheeler.com",
-            roles=function (val) return jwt.table_contains(val, "admin.system") end
-          })
-        ';
-
-        try_files $uri /admin.html;
-        #proxy_pass http://app.webfactional.com/admin.html;
-      }
-    }
-  }
+	events {
+	  	worker_connections 1024;
+	}
+	
+	 http {
+	   include       mime.types;
+	   default_type  application/octet-stream;
+	
+	   sendfile      on;
+	   sendfile_max_chunk 1m;
+	
+	   tcp_nopush on;
+	   tcp_nodelay on;
+	
+	   keepalive_timeout 65;
+	
+	   lua_package_path "$HOME/webapps/openresty_nginx_app/openresty/lualib/?.lua;;";
+	
+	   server {
+	     listen      8080;
+	     server_name localhost;
+	     root        $HOME/webapps/openresty_nginx_app/app;
+	
+	     location / {
+	       try_files $uri /index.html;
+	     }
+	
+	     location /secure {
+	       access_by_lua '
+	         local jwt = require("nginx-jwt")
+	         jwt.auth()
+	       ';
+	
+	       # try_files $uri /index.html;
+	       proxy_pass http://app.webfactional.com/secure.html;
+	     }
+	
+	     location /admin {
+	       access_by_lua '
+	         local jwt = require("nginx-jwt")
+	         jwt.auth({
+	           iss="i.freewheeler.com",
+	           roles=function (val) return jwt.table_contains(val, "admin.system") end
+	         })
+	       ';
+	
+	       try_files $uri /admin.html;
+	       #proxy_pass http://app.webfactional.com/admin.html;
+	     }
+	   }
+	 }
 
 We have said nginx all of our lua file are under openresty/lualib directory.
 Then we required `nginx-jwt.lua` file using `require`. And called `nginx-jwt`
