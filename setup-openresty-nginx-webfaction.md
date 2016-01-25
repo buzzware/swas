@@ -128,48 +128,73 @@ for more information: [https://github.com/auth0/nginx-jwt](https://github.com/au
 
 `vi ~/webapps/openresty_nginx_app/openresty/nginx/conf/nginx.conf`
 
-	env JWT_SECRET=c2VjcmV0; 	# BASE64 Encoded word which is equals to "secret"
-	env JWT_SECRET_IS_BASE64_ENCODED=true;
-	
-	worker_processes 1;
-	
-	events {
-		worker_connections 1024;
-	}
-	
-    http {
-      include 			mime.types;
-      default_type		application/octet-stream;
-      
-      send_file 		on;
-      sendfile_max_chunk 1m;
-      
-      tcp_nopush	on;
-      tcp_nodelay	on;
-      
-      keepalive_timeout		65;
-      
-      lua_package_path "$HOME/webapps/openresty_nginx_app/openresty/lualib/?.lua;;";
-      
-      server {
-        listen 			8080;
-        server_name 	localhost;
-        root 			$HOME/webapps/openresty_nginx_app/app;
-        
-        location /secure {
-          access_by_lua '
-            loacl jwt = require('nginx-jwt')
-            jwt.auth()
-          ';
-          try_files $uri /index.html;
-        }
+	env JWT_SECRET=c2VjcmV0;
+  env JWT_SECRET_IS_BASE64_ENCODED=true;
+
+  worker_processes 1;
+
+  events {
+    worker_connections 1024;
+  }
+
+  http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile      on;
+    sendfile_max_chunk 1m;
+
+    tcp_nopush on;
+    tcp_nodelay on;
+
+    keepalive_timeout 65;
+
+    lua_package_path "$HOME/webapps/openresty_nginx_app/openresty/lualib/?.lua;;";
+
+    server {
+      listen      8080;
+      server_name localhost;
+      root        $HOME/webapps/openresty_nginx_app/app;
+
+      location / {
+        try_files $uri /index.html;
+      }
+
+      location /secure {
+        access_by_lua '
+          local jwt = require("nginx-jwt")
+          jwt.auth()
+        ';
+
+        # try_files $uri /index.html;
+        proxy_pass http://app.webfactional.com/secure.html;
+      }
+
+      location /admin {
+        access_by_lua '
+          local jwt = require("nginx-jwt")
+          jwt.auth({
+            iss="i.freewheeler.com",
+            roles=function (val) return jwt.table_contains(val, "admin.system") end
+          })
+        ';
+
+        try_files $uri /admin.html;
+        #proxy_pass http://app.webfactional.com/admin.html;
       }
     }
+  }
 
 We have said nginx all of our lua file are under openresty/lualib directory.
 Then we required `nginx-jwt.lua` file using `require`. And called `nginx-jwt`
 inbuilt `auth()` function. This function will helps us secure our API with 
 invalid JWT token.
+
+Here, `/` route is publicly available for everyone. Whereas, `/secure` is available
+to only those who will provide valid `jwt` via `HEADER` request. Similarly, 
+`/admin` routes is only accessible for those who will provide valid `jwt` as 
+well as, `jwt payload` must contains, `roles: 'admin.system'` that is identity
+for `System Admins` in our server as an example.
 
 ### Testing with `curl -i` command
 
@@ -198,7 +223,9 @@ With Valid Token:
 	
 Should respond with content in `index.html` page.
 
+### Payload 
 
+payload = {uid: '123', exp: 36000.seconds.from_now.to_i, iss: 'i.freewheeler.com', roles: ["admin.system"], aud: 'foo:user'}
 
 ## References
 
