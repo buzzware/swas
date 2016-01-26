@@ -167,7 +167,7 @@ for more information: [https://github.com/auth0/nginx-jwt](https://github.com/au
 	       ';
 	
 	       # try_files $uri /index.html;
-	       proxy_pass http://app.webfactional.com/secure.html;
+	       proxy_pass http://app.webfactional.com/index.html;
 	     }
 	
 	     location /admin {
@@ -179,11 +179,13 @@ for more information: [https://github.com/auth0/nginx-jwt](https://github.com/au
 	         })
 	       ';
 	
-	       try_files $uri /admin.html;
-	       #proxy_pass http://app.webfactional.com/admin.html;
+	       # try_files $uri /admin.html;
+	       proxy_pass http://app.webfactional.com/index1.html;
 	     }
 	   }
 	 }
+
+> Important NOTE: `proxy_pass http://app.webfactional.com/admin.html;` will send request loop to `/admin` location which will becomes infinite loop and we will get `400 Bad Request - request header or cookie too large`. So, we can use `try_files $uri /admin.html` if we want to keep `admin.html` as file name, and we can also change filename to something other then `admin.html` and use proxy_pass, which will work as expected.
 
 We have said nginx all of our lua file are under openresty/lualib directory.
 Then we required `nginx-jwt.lua` file using `require`. And called `nginx-jwt`
