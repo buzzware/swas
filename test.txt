@@ -1,0 +1,53 @@
+META RESOURCE
+===============
+
+1. u.meta.admin
+---------------
+
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTE2OTAsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluIl19.5reDgpGOvVR6PGdmx1ULxSN4mOtecN2oJqoHSap7Ex0"
+
+HTTP/1.1 200 OK
+
+2. u.meta
+---------
+
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTIwNzYsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhIl19.NKo6rugG17EuMv1_ImjvcHHzyqLIjbIec0EsBoo0biA"
+
+HTTP/1.1 200 OK
+
+3. u.meta.admin.system
+----------------------
+
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTE5MzQsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluLnN5c3RlbSJdfQ.H90S9nlM5sMJ3e1Y4VLTic9NzYDnydgaPvVhXKfb6Qc"
+
+HTTP/1.1 200 OK
+
+
+4. u.meta_admin
+---------------
+
+url http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTIxMTksImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhX2FkbWluIl19.gaxl30oGWzPwC9-R6mdQ70wfrjhaJuZ0r79K-LuoSKg"
+
+HTTP/1.1 401 Unauthorized
+
+5. u.meta_admin_system
+----------------------
+
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTIyMTcsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhX2FkbWluX3N5c3RlbSJdfQ.-Wb9MyTysmqMgjLdTKyucSIsCFMW_C0dWD8mnCNZL64"
+
+HTTP/1.1 401 Unauthorized
+
+6. u.domain
+------------
+
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTIyNTQsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5kb21haW4iXX0.z5VRoccaRnEMDL4EImetRKtTA4Cg9raDP4QWQSyw67Q"
+
+HTTP/1.1 401 Unauthorized
+
+
+
+DOMAIN RESOURCE
+===============
+
+1. u.domain
+------------

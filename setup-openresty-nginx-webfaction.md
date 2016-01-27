@@ -175,7 +175,7 @@ for more information: [https://github.com/auth0/nginx-jwt](https://github.com/au
 	         local jwt = require("nginx-jwt")
 	         jwt.auth({
 	           iss="i.freewheeler.com",
-	           roles=function (val) return jwt.table_contains(val, "admin.system") end
+	           roles=function (val) return jwt.table_contains(val, "u.meta") end
 	         })
 	       ';
 	
@@ -236,7 +236,7 @@ in your payload.
   		uid: '123', 
   		exp: 36000.seconds.from_now.to_i, 
   		iss: 'i.freewheeler.com', 
-  		roles: ["admin.system"], 
+  		roles: ["u.meta.admin.system"],
   		aud: 'foo:user'
   	}
 
