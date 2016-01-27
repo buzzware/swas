@@ -160,14 +160,20 @@ for more information: [https://github.com/auth0/nginx-jwt](https://github.com/au
 	       try_files $uri /index.html;
 	     }
 	
-	     location /secure {
+	     location /domain {
 	       access_by_lua '
 	         local jwt = require("nginx-jwt")
-	         jwt.auth()
+	         jwt.auth({
+            local jwt = require("nginx-jwt")
+            jwt.auth({
+              iss="i.freewheeler.com",
+              roles=function (val) return jwt.match_roles(val, 'u.domain') end
+            })
+           })
 	       ';
 	
-	       # try_files $uri /index.html;
-	       proxy_pass http://app.webfactional.com/index.html;
+	       # try_files $uri /udomain.html;
+	       proxy_pass http://app.webfactional.com/udomain.html;
 	     }
 	
 	     location /admin {
@@ -175,12 +181,12 @@ for more information: [https://github.com/auth0/nginx-jwt](https://github.com/au
 	         local jwt = require("nginx-jwt")
 	         jwt.auth({
 	           iss="i.freewheeler.com",
-	           roles=function (val) return jwt.table_contains(val, "u.meta") end
+	           roles=function (val) return jwt.match_roles(val, "u.meta") end
 	         })
 	       ';
 	
-	       # try_files $uri /admin.html;
-	       proxy_pass http://app.webfactional.com/index1.html;
+	       # try_files $uri /umeta.html;
+	       proxy_pass http://app.webfactional.com/umeta.html;
 	     }
 	   }
 	 }
