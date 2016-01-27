@@ -48,27 +48,23 @@ function match_roles(table, item)
   end
 end
 
-local r = {}
-r["roles"] = 'u.meta_admin'
-print(role_exists(r, 'u.meta'))
 
--- local table = {}
+-- local tbl = {}
+-- tbl["roles"] = 'u.meta.admin.system'
+-- print(role_exists(tbl, 'u.meta'))
 
--- table["roles"] = 'u.meta.admin.system'
--- print(role_exists(table, 'u.meta'))
+-- tbl["roles"] = 'u.meta.admin'
+-- print(role_exists(tbl, 'u.meta'))
 
--- table["roles"] = 'u.meta.admin'
--- print(role_exists(table, 'u.meta'))
+-- tbl["roles"] = 'u.meta'
+-- print(role_exists(tbl, 'u.meta'))
 
--- table["roles"] = 'u.meta'
--- print(role_exists(table, 'u.meta'))
+-- tbl["roles"] = 'u.meta_admin'
+-- print(role_exists(tbl, 'u.meta'))
 
--- table["roles"] = 'u.meta_admin'
--- print(role_exists(table, 'u.meta'))
+-- tbl["roles"] = 'u.domain.admin'
+-- print(role_exists(tbl, 'u.domain'))
 
--- table["roles"] = 'u.domain.admin'
--- print(role_exists(table, 'u.domain'))
-
--- table["roles"] = 'u.domain_admin'
--- print(role_exists(table, 'u.domain'))
+-- tbl["roles"] = 'u.domain_admin'
+-- print(role_exists(tbl, 'u.domain'))
 
