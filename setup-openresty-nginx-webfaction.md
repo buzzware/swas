@@ -231,14 +231,21 @@ To ensure, above `/admin` resource do not throw `401` error, you need to make
 sure, you must have `iss: 'i.freewheeler.com'` and `roles: ["admin.system"]` 
 in your payload.
 
-  	# Example Payload
+  	# Example Payload for meta users
   	{
   		uid: '123', 
   		exp: 36000.seconds.from_now.to_i, 
   		iss: 'i.freewheeler.com', 
-  		roles: ["u.meta.admin.system"],
-  		aud: 'foo:user'
+  		roles: ["u.meta.*"]
   	}
+
+    # Example Payload for domain users
+    {
+      uid: '123',
+      exp: 36000.seconds.from_now.to_i,
+      iss: 'i.freewheeler.com',
+      roles: ['u.domain.*'] # we can also use 'u.meta'
+    }
 
 ## References
 
