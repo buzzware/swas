@@ -14,7 +14,7 @@ function match_roles(table, pattern)
     if pattern == "u.meta" then
       if pattern == u_meta(value) then return true end
     elseif pattern == "u.domain" then
-      if ( pattern == u_domain(value) or u_meta(value) == 'u.meta' ) then return true end
+      if pattern == u_domain(value) then return true end
     end
     return false
   end
@@ -94,19 +94,19 @@ function test_user_should_either_domain_or_meta ()
   luaunit.assertEquals( match_roles(t, 'u.domain'), false )
 end
 
-function test_meta_user_in_domain_should_be_true ()
+function test_meta_user_in_domain_should_be_false ()
   t["roles"] = 'u.meta'
-  luaunit.assertEquals( match_roles(t, 'u.domain'), true )
+  luaunit.assertEquals( match_roles(t, 'u.domain'), false )
 end
 
-function test_meta_admin_in_domain_should_be_true ()
+function test_meta_admin_in_domain_should_be_false ()
   t["roles"] = 'u.meta.admin'
-  luaunit.assertEquals( match_roles(t, 'u.domain'), true )
+  luaunit.assertEquals( match_roles(t, 'u.domain'), false )
 end
 
-function test_system_admin_in_domain_should_be_true ()
+function test_system_admin_in_domain_should_be_false ()
   t["roles"] = 'u.meta.admin.system'
-  luaunit.assertEquals( match_roles(t, 'u.domain'), true )
+  luaunit.assertEquals( match_roles(t, 'u.domain'), false )
 end
 
 function test_fake_meta_admin_in_domain_should_be_true ()
