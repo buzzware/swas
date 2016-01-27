@@ -1,17 +1,15 @@
 -- USAGE:
 --
 --  local t     = {}
---  t['roles']  = 'u.meta'
---  match_roles(t, pattern)  -- pattern can be one of these two values
---    u.meta
---    u.domain
-
--- function u_meta(v) return string.match(v, '^u%.meta%f[%z.]') end
--- function u_domain(v) return string.match(v, '^u%.domain%f[%z.]') end
-
+--  t['roles']  = 'u.meta.admin'
+--  match_roles(t, 'u.meta') -- u.meta
+--  match_roles(t, 'u.fake') -- nil
 
 -- SOLUTION 1
 --------------
+--
+-- function u_meta(v) return string.match(v, '^u%.meta%f[%z.]') end
+-- function u_domain(v) return string.match(v, '^u%.domain%f[%z.]') end
 --
 -- function match_roles(table, pattern)
 --   for _, value in pairs(table) do
