@@ -158,5 +158,10 @@ function test_anything_should_fail_incorrect_pattern()
   luaunit.assertEquals( match_roles(t, 'a.b'), false )
 end
 
+function test_allowed_role_must_be_begining()
+  t['roles'] = 'a.b.c'
+  luaunit.assertEquals( match_roles(t, 'b.c'), false )
+end
+
 -- Exit after testcases finished
 os.exit( luaunit.LuaUnit.run() )
