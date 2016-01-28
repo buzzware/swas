@@ -114,6 +114,15 @@ function M.auth(claim_specs)
     ngx.header["X-Auth-UserId"] = jwt_obj.payload.sub
 end
 
+function escape (s) return string.gsub(s, '[.*+?^$()[%%-]', "%%%0") end
+function pattern_matcher(v, pattern) return string.match(v, pattern) end
+function match_roles(table, pattern)
+  for _, value in pairs(table) do
+    if pattern == pattern_matcher(value, '^' .. escape(pattern) .. '%f[%z.]') then return true end
+    return false
+  end
+end
+
 function M.table_contains_role(table, role, regex)
     for _, value in pairs(table) do
         -- value is from JWT token
