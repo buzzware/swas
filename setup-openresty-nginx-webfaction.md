@@ -129,67 +129,78 @@ for more information: [https://github.com/auth0/nginx-jwt](https://github.com/au
 `vi ~/webapps/openresty_nginx_app/openresty/nginx/conf/nginx.conf`
 
 	env JWT_SECRET=c2VjcmV0;
-	env JWT_SECRET_IS_BASE64_ENCODED=true;
+  env JWT_SECRET_IS_BASE64_ENCODED=true;
 
-	worker_processes 1;
+  worker_processes 1;
 
-	events {
-	  	worker_connections 1024;
-	}
-	
-	 http {
-	   include       mime.types;
-	   default_type  application/octet-stream;
-	
-	   sendfile      on;
-	   sendfile_max_chunk 1m;
-	
-	   tcp_nopush on;
-	   tcp_nodelay on;
-	
-	   keepalive_timeout 65;
-	
-	   lua_package_path "$HOME/webapps/openresty_nginx_app/openresty/lualib/?.lua;;";
-	
-	   server {
-	     listen      8080;
-	     server_name localhost;
-	     root        $HOME/webapps/openresty_nginx_app/app;
-	
-	     location / {
-	       try_files $uri /index.html;
-	     }
-	
-	     location /domain {
-	       access_by_lua '
-	         local jwt = require("nginx-jwt")
-	         jwt.auth({
-            local jwt = require("nginx-jwt")
-            jwt.auth({
-              iss="i.freewheeler.com",
-              roles=function (val) return jwt.match_roles(val, 'u.domain') end
-            })
-           })
-	       ';
-	
-	       # try_files $uri /udomain.html;
-	       proxy_pass http://app.webfactional.com/udomain.html;
-	     }
-	
-	     location /admin {
-	       access_by_lua '
-	         local jwt = require("nginx-jwt")
-	         jwt.auth({
-	           iss="i.freewheeler.com",
-	           roles=function (val) return jwt.match_roles(val, "u.meta") end
-	         })
-	       ';
-	
-	       # try_files $uri /umeta.html;
-	       proxy_pass http://app.webfactional.com/umeta.html;
-	     }
-	   }
-	 }
+  events {
+    worker_connections 1024;
+  }
+
+  http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile      on;
+    sendfile_max_chunk 1m;
+
+    tcp_nopush on;
+    tcp_nodelay on;
+
+    keepalive_timeout 65;
+
+    lua_package_path "$HOME/webapps/openresty_nginx_app/openresty/lualib/?.lua;;";
+
+    server {
+      listen      8080;
+      server_name localhost;
+      root        $HOME/webapps/openresty_nginx_app/app;
+
+      location / {
+        try_files $uri /index.html;
+      }
+
+      location /secure {
+        access_by_lua '
+          local jwt = require("nginx-jwt")
+          jwt.auth()
+        ';
+
+        # try_files $uri /index.html;
+        proxy_pass http://app.webfactional.com/secure.html;
+      }
+
+      location /domain {
+        access_by_lua '
+          local jwt = require("nginx-jwt")
+          jwt.auth({
+            iss="i.freewheeler.com",
+            roles=function (val) return jwt.match_roles(val, "u.domain") end
+          })
+        ';
+        proxy_pass http://app.webfactional.com/udomain.html;
+      }
+
+      location /admin {
+        access_by_lua '
+          local jwt = require("nginx-jwt")
+          jwt.auth({
+            iss="i.freewheeler.com",
+            roles=function (val) return jwt.match_roles(val, "u.meta") end
+          })
+        ';
+
+        # try_files $uri /index1.html;
+        # if your proxy_pass to admin.html, then it will be infinite loop in that
+        # resource and you will get 400 Bad Request. Because NOTE: location /admin
+        # and proxy_pass url/admin.html. proxy_pass will send request to /admin
+        # again and again. So replace it with some other file name, of you can use
+        # try_files $uri /admin.html, if you want admin.html file to display.
+        proxy_pass http://app.webfactional.com/umeta.html;
+      }
+    }
+  }
+
 
 > Important NOTE: `proxy_pass http://app.webfactional.com/admin.html;` will send request loop to `/admin` location which will becomes infinite loop and we will get `400 Bad Request - request header or cookie too large`. So, we can use `try_files $uri /admin.html` if we want to keep `admin.html` as file name, and we can also change filename to something other then `admin.html` and use proxy_pass, which will work as expected.
 

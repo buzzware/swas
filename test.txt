@@ -1,24 +1,68 @@
-META RESOURCE
-===============
+===============================================================================
+PUBLIC API
+===============================================================================
 
-1. u.meta.admin
----------------
-
-curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTE2OTAsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluIl19.5reDgpGOvVR6PGdmx1ULxSN4mOtecN2oJqoHSap7Ex0"
+curl http://buzzware1.webfactional.com/
 
 HTTP/1.1 200 OK
 
-2. u.meta
+
+===============================================================================
+SECURE RESOURCE
+===============================================================================
+
+1. valid jwt
+------------
+
+curl http://buzzware1.webfactional.com/secure -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTQ0NTMsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluIl19.VJmPN9OHGjJ4xmzSAXpX5WGk25DBVWC6qa4Ttc1XB4Q"
+
+HTTP/1.1 200 OK
+
+2. without jwt
+---------------
+
+curl http://buzzware1.webfactional.com/secure -i -H
+
+HTTP/1.1 401 Unauthorized
+
+2. expired/invalid jwt
+----------------------
+
+curl http://buzzware1.webfactional.com/secure -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5NTQ1NjcsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluIl19.mIoooPDt2tpJlg26uD1e4yGQQt_iPEyzXtwbGdliJcg"
+
+HTTP/1.1 401 Unauthorized
+
+
+===============================================================================
+META RESOURCE
+===============================================================================
+
+*. without jwt
+--------------
+
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer "
+
+HTTP/1.1 401 Unauthorized
+
+
+1. u.meta
 ---------
 
-curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTIwNzYsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhIl19.NKo6rugG17EuMv1_ImjvcHHzyqLIjbIec0EsBoo0biA"
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTQ5MTAsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhIl19.9MunAX_zhWO-t9klzwpV1C_y54Cad1Bbxsk1o5YZzE8"
+
+HTTP/1.1 200 OK
+
+2. u.meta.admin
+---------
+
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTQ3MzMsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluIl19.wxWqjsqky54UYRale9_enwnXRkefD0MozMk1lkj96qs"
 
 HTTP/1.1 200 OK
 
 3. u.meta.admin.system
 ----------------------
 
-curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTE5MzQsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluLnN5c3RlbSJdfQ.H90S9nlM5sMJ3e1Y4VLTic9NzYDnydgaPvVhXKfb6Qc"
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTQ5MzgsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluLnN5c3RlbSJdfQ.NLcx37gg7OIdvN7RsUmpit72sCRGaj9y8MPGJ6t0Oi4"
 
 HTTP/1.1 200 OK
 
@@ -26,28 +70,67 @@ HTTP/1.1 200 OK
 4. u.meta_admin
 ---------------
 
-url http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTIxMTksImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhX2FkbWluIl19.gaxl30oGWzPwC9-R6mdQ70wfrjhaJuZ0r79K-LuoSKg"
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTUwMDIsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhX2FkbWluIl19.XAzSIyoZNe6JHIKKoFDJy7yE5ToF0Ul19nl5CzYe6PE"
 
 HTTP/1.1 401 Unauthorized
 
-5. u.meta_admin_system
+5. u.meta-admin
 ----------------------
 
-curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTIyMTcsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhX2FkbWluX3N5c3RlbSJdfQ.-Wb9MyTysmqMgjLdTKyucSIsCFMW_C0dWD8mnCNZL64"
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTUwNjEsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLWFkbWluIl19.FixN1lg-6C4hcQrOMJkkPdDLnl_nyk8hmqFsCdC7Ljs"
 
 HTTP/1.1 401 Unauthorized
 
 6. u.domain
 ------------
 
-curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE0NTM5MTIyNTQsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5kb21haW4iXX0.z5VRoccaRnEMDL4EImetRKtTA4Cg9raDP4QWQSyw67Q"
+curl http://buzzware1.webfactional.com/admin -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTUwOTEsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5kb21haW4iXX0.g5JXKpx7D4IBlsK8u4-_4Qg4pQInQlnWdrhrb5KMgTs"
 
 HTTP/1.1 401 Unauthorized
 
 
 
 DOMAIN RESOURCE
-===============
+===============================================================================
 
 1. u.domain
 ------------
+
+curl http://buzzware1.webfactional.com/domain -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTUwOTEsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5kb21haW4iXX0.g5JXKpx7D4IBlsK8u4-_4Qg4pQInQlnWdrhrb5KMgTs"
+
+HTTP/1.1 200 OK
+
+2. u.domain.admin
+-----------------
+
+curl http://buzzware1.webfactional.com/domain -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTUxNjgsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5kb21haW4uYWRtaW4iXX0.-GdSHa9B2IPmoTe6Q-hL6jKLOekRfcFe_y-SIbm5Ajo"
+
+HTTP/1.1 200 OK
+
+3. u.domain_admin
+-----------------
+
+curl http://buzzware1.webfactional.com/domain -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTUzNDUsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5kb21haW5fYWRtaW4iXX0.X30snEv4Nn2NsOg_Q8F7HJyE14iTitL03nqIVQH3ujE"
+
+HTTP/1.1 401 Unauthorized
+
+4. u.domain-admin
+-----------------
+
+curl http://buzzware1.webfactional.com/domain -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTUzNjIsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5kb21haW4tYWRtaW4iXX0.Bu8qolOk5w9b3ruqorJigwZ14WrfCySigdgAOnaxcCA"
+
+HTTP/1.1 401 Unauthorized
+
+5. u.meta
+---------
+
+curl http://buzzware1.webfactional.com/domain -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTUzOTcsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhIl19.9bXBtRrjWCq49N0P1FAvosXPN0jnLKCmwVNmAYiXFbk"
+
+HTTP/1.1 401 Unauthorized
+
+6. u.meta.admin
+---------------
+
+curl http://buzzware1.webfactional.com/domain -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJleHAiOjE1NDAzNTU0MDcsImlzcyI6ImkuZnJlZXdoZWVsZXIuY29tIiwicm9sZXMiOlsidS5tZXRhLmFkbWluIl19.kh-H03c9VVkykYt1wfnOpEZIA8mX7cMRn708Dk97DH8"
+
+HTTP/1.1 401 Unauthorized
